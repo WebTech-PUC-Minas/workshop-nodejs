@@ -41,8 +41,7 @@ Acesse o site do PostgreSQL e instale em seu computador.
  
 ### Pré-Requisitos
 
-
-- **[Node.js](https://nodejs.org/en/learn/getting-started/how-much-javascript-do-you-need-to-know-to-use-nodejs)** 
+- **[Node.js](https://nodejs.org/en/download)** 
 
 - **[PostgreSQL](https://www.postgresql.org/download/)**
 
