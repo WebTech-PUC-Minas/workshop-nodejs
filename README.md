@@ -1,129 +1,149 @@
-<!-- Exemplo de uso do template: https://github.com/kspencerl/lab-springboot-basic-api -->
-
-# Nome do Projeto
+# Workshop Node.js
 
 <!--Breve descrição do projeto aqui -->
 
 
 ## Tecnologias utilizadas
-Linguagens, Frameworks e Bibliotecas utilizadas na construção do projeto.
+
+Node.js, Express, PostgreSQL e Sequelize.
 
 <!-- Link com os badges para inserir abaixo https://devicon.dev/ -->
 <div style="display: flex; gap: 10px;">
-  <img width="50px" src="">             <!--coloque o link do ícone no src -->
-  <img width="50px" src="">
-  <img width="50px" src="">
-  <img width="50px" src="">
+  <img width="50px" src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white">             <!--coloque o link do ícone no src -->
+  <img width="50px" src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge">
+  <img width="50px" src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white">
+  <img width="50px" src="https://img.shields.io/badge/sequelize-323330?style=for-the-badge&logo=sequelize&logoColor=blue">
 </div>
 
 ## Onde Aplicar
-Este projeto pode ser aplicado em diversas situações:
-- <!--Exemplos listados aqui -->
-- <!--Exemplos listados aqui -->
-- <!--Exemplos listados aqui -->
-- <!--Exemplos listados aqui -->
 
-
+Desenvolvimento de API REST
 
 # Sumário
 
 * [Instalações](#instalações)
   * [Pré-Requisitos](#pré-requisitos)
-  * [Configuração de Ambiente](#configuração-de-ambiente)
+  * [Recursos adicionais](#recursos-adicionais)
 * [Roadmap](#roadmap)
-  * [Passo 1](#step-1---inicialização-do-projeto-com-spring-initializr)
-  * [Passo 2](#step-2---configuração-do-projeto-e-migrações-com-flyway)
-  * [Passo 3](#step-3)
-  * [Passo 4](#step-4)
+  * [STEP 1 - Concepções básicas do Node](#step-1---concepções-básicas-do-node)
+  * [STEP 2 - Concepções básicas sobre o NPM](#step-2---concepções-básicas-sobre-o-npm)
+  * [STEP 3 - Concepções básicas sobre API REST](#step-3---concepções-básicas-sobre-api-rest)
+  * [STEP 4 - Desenvolvimento da Aplicação](#step-4---desenvolvimento-da-aplicação)
 * [Contato](#contato)
 * [License](#license)
 
 
-
-
 ## Instalações
 
-Siga com precisão as orientações de configuração do ambiente para assegurar eficácia consistente no desenvolvimento do projeto.
+Acesse o site Node.js e baixe a versão LTS e instale em seu computador.
+
+Acesse o site do PostgreSQL e instale em seu computador.
  
 ### Pré-Requisitos
-<!-- Neste setor, coloque as instalações necessárias para realizar o projeto-->
-- **[Nome](site para download aqui)** <!--  - inserir breve comentário ao lado  -->
-- **[Nome](site para download aqui)**
-- **[Nome](site para download aqui)**
-- **[Nome](site para download aqui)**
+
+
+- **[Node.js](https://nodejs.org/en/learn/getting-started/how-much-javascript-do-you-need-to-know-to-use-nodejs)** 
+
+- **[PostgreSQL](https://www.postgresql.org/download/)**
 
 ### Recursos adicionais
-<!-- Aqui você pode inserir sites ou ferramentas online que não serão necessárias instalar, mas serão necessárias para realizar o projeto-->
-- **[Nome](site para download aqui)**
+
+
+- **[Express](https://expressjs.com/)**
+- **[Sequelize](https://sequelize.org/)**
 
 
 ## Roadmap
- ### STEP 1 - Título do Passo
-1. **Explicação**
+
+### STEP 1 - Concepções básicas do Node
+
+1. **Instalação e Configuração**
+  - Instalar Node.js
+  - Configurar o ambiente de desenvolvimento
+
+2. **Módulos e Require**
+  - Entender o sistema de módulos
+  - Utilizar o require para importar módulos
+
+### STEP 2 - Concepções básicas sobre o NPM
+
+1. **Inicialização e Utilização**
+  - Inicializar um projeto
+  - Utilizar o npm para instalar pacotes de terceiros
+
+2. **Gestão de Dependências**
+  - Gerenciar dependências com `package.json`
+
+3. **Scripts Personalizados**
+  - Criar e utilizar scripts personalizados no package.json
+
+### STEP 3 - Concepções básicas sobre API REST
+
+1. **Arquitetura RESTful**
+  - Compreender os princípios fundamentais da arquitetura REST
+  - Estruturar endpoints RESTful
+
+2. **HTTP Methods**
+  - Utilizar corretamente os métodos HTTP (GET, POST, PUT, DELETE)
+
+| Método | Rota | Descrição |
+| :------: | ---- | --------- |
+| GET | `/produtos` | Consultar os produtos criados |
+| POST | `/produtos` | Criar um novo produtos |
+| PUT | `/produtos/{id}` | Atualizar dados do produtos pelo ID |
+| DELETE | `/produtos/{id}` | Deletar produto cadastrado pelo ID |
+
+### STEP 4 - Desenvolvimento da Aplicação
+
+1. **Inicando o projeto e instalando os pacotes**
+
+Incializando o projeto.
+
+`npm init -y`
+
+O nodemon ajuda no desenvolvimento da sua aplicação reniciando o server após edição.
+
+`npm install -g nodemon`
+
+`npm install express sequelize pg`
 
 
-2. **Explicação**
-   - Explicação
-   - Explicação
+2. **Desenvolvendo as rotas**
+    - Implementar rotas para manipulação de recursos
 
+3. **Fazendo a conexão com o banco de dados**
+  - Configurar e estabelecer conexão com o banco de dados PostgreSQL
 
-3. **Explicação**
-   - Explicação
-
-
-4. **Explicação** 
-
-
-5. **Explicação**
-    - Explicação
-
-
-### STEP 2 - Título do Passo
-1. **Explicação**
-
-
-2. **Explicação**
-    - Explicação
-    - Explicação
-
-![imagem](img.png)
-
-3. **Explicação**
-  - 
-
-
-  - 
-
-
+4. **Manipulando o banco de dados**
   
+  - Consultar dados cadastrados
+  
+  - Inserir novos dados
 
-![img.png](img.png)
+```sql
+INSERT INTO produto (descricao, valor, marca) VALUES
+    ('Camiseta branca', 29.99, 'Marca A'),
+    ('Calça jeans', 59.99, 'Marca B'),
+    ('Tênis preto', 79.99, 'Marca C'),
+    ('Relógio de pulso', 149.99, 'Marca D'),
+    ('Óculos de sol', 39.99, NULL),
+    ('Mochila escolar', 49.99, 'Marca E'),
+    ('Fone de ouvido sem fio', 89.99, 'Marca F'),
+    ('Carregador portátil', 19.99, 'Marca G'),
+    ('Livro de ficção científica', 14.99, 'Editora X'),
+    ('Caneta esferográfica', 2.99, 'Marca Y');
+```
 
-4. **Explicação**
+  - Atualizar dados cadastrados
 
-  - 
-
-
-  - 
-
-
-
-5. **Explicação**
-  - 
-
- ![img.png](img.png)
-
-  - .
-    - .
-    - 
-
+  - Deletar dados cadastrados 
 
 ## Contato
-Seu nome - [seuemail@gmail.com](mailto:seuemail@gmail.com).
 
-GitHub: [github.com/seuUser](https://github.com/seuUser)
+LinkedIn - [WebTech PUC Minas](https://www.linkedin.com/company/webtech-puc-minas/).
+
+GitHub: [WebTech PUC Minas](https://github.com/WebTech-PUC-Minas)
 
 ## License
 
-Este projeto é licenciado sob a [Nome da Licença](URL da Licença) - veja o arquivo [LICENSE.md](LICENSE.md) para mais detalhes.
-
+[LICENSE](./LICENSE)
