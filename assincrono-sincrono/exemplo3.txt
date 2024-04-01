@@ -1,2 +1,0 @@
-EXEMPLO 3
-Este é um arquivo de exemplo para demonstrar operações de leitura assíncrona e síncrona em Node.js.
