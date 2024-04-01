@@ -45,6 +45,12 @@ Acesse o site do PostgreSQL e instale em seu computador.
 
 - **[PostgreSQL](https://www.postgresql.org/download/)**
 
+ API Platform:
+
+- **[Insomnia](https://insomnia.rest/download)**
+
+- **[Postman](https://www.postman.com/downloads/)**
+
 ### Recursos adicionais
 
 
@@ -85,9 +91,22 @@ Acesse o site do PostgreSQL e instale em seu computador.
 2. **HTTP Methods**
   - Utilizar corretamente os métodos HTTP (GET, POST, PUT, DELETE)
 
+  ![headers](./images/headers.png);
+
+```js
+const request = new Request("/myEndpoint", {
+  method: "POST",
+  body: "Hello world",
+});
+
+request.body; // ReadableStream
+
+```
+
 | Método | Rota | Descrição |
 | :------: | ---- | --------- |
 | GET | `/produtos` | Consultar os produtos criados |
+| GET | `/produtos/{id}` | Consultar o produto criado pelo ID |
 | POST | `/produtos` | Criar um novo produtos |
 | PUT | `/produtos/{id}` | Atualizar dados do produtos pelo ID |
 | DELETE | `/produtos/{id}` | Deletar produto cadastrado pelo ID |
@@ -118,6 +137,16 @@ O nodemon ajuda no desenvolvimento da sua aplicação reniciando o server após 
   - Consultar dados cadastrados
   
   - Inserir novos dados
+
+```sql
+CREATE TABLE public.produtos (
+	id bigserial NOT NULL,
+	descricao varchar(50) NOT NULL,
+	valor numeric(10, 2) NOT NULL,
+	marca varchar(25) NULL,
+	CONSTRAINT produtos_pkey PRIMARY KEY (id)
+);
+```
 
 ```sql
 INSERT INTO produto (descricao, valor, marca) VALUES
