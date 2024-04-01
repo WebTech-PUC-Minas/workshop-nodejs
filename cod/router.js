@@ -1,0 +1,68 @@
+const express = require('express');
+const routerProdutos = express.Router();
+const Produtos = require('./produtos');
+
+
+routerProdutos.get('/produtos', async (req, res) => {
+    const produtos = await Produtos.findAll();
+
+    res.status(200).json(produtos);
+})
+
+routerProdutos.get('/produtos/:id', async (req, res) => {
+    console.log(req.params);
+    const { id } = req.params;
+
+    const produto = await Produtos.findByPk(id);
+    res.status(200).json(produto);
+})
+
+routerProdutos.post('/produtos', async (req, res) => {
+    const { descricao, valor, marca } = req.body;
+    
+    const novoProduto = await Produtos.create({
+        descricao,
+        valor,
+        marca
+    })
+
+    res.status(200).json(novoProduto);
+})
+
+routerProdutos.put('/produtos/:id', async (req, res) => {
+    
+    const { descricao, valor, marca } = req.body;
+    const { id } = req.params;
+
+    await Produtos.update({
+        descricao,
+        valor,
+        marca
+    }, {
+        where: { id }
+    })
+
+    console.log('id', id);
+    const atualizadoProduto = await Produtos.findByPk(id);
+    console.log('produto atualizado', atualizadoProduto);
+    
+    res.status(200).json(atualizadoProduto);
+
+})
+
+
+routerProdutos.delete('/produtos/:id', async (req, res) => {
+
+    const { id } = req.params;
+
+    Produtos.destroy({
+        where: { id }
+    }).then( _ => {
+        res.status(200).json( { message: 'Produto deletado com sucesso.' } )
+    })
+
+})
+
+
+
+module.exports = routerProdutos;
