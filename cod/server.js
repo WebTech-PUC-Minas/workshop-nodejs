@@ -1,20 +1,21 @@
 const express = require('express');
-const routerProdutos = require('./c-db/router');
-const { connectionDb } = require('./c-db/db');
+const path = require('path');
+
+const routerProdutos = require('./router');
+
+const { connectionDb } = require('./db');
 const app = express();
 
 connectionDb();
 
 app.use(express.json());
 
-app.use('/', routerProdutos);
+app.use('/produtos', routerProdutos);
 
-app.get('/', (req, res) => {
-    res.send('<h1>Node.js Workshop!</h1>');
-})
+app.use('/', express.static(path.join(__dirname, 'public')));
 
 const PORT = 3000;
 
 app.listen(PORT, () => {
-    console.log(`Server is listing ${PORT}`);
+    console.log(`http://localhost:${PORT}`);
 })

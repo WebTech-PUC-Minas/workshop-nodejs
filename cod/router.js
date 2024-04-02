@@ -3,13 +3,13 @@ const routerProdutos = express.Router();
 const Produtos = require('./produtos');
 
 
-routerProdutos.get('/produtos', async (req, res) => {
+routerProdutos.get('/', async (req, res) => {
     const produtos = await Produtos.findAll();
 
     res.status(200).json(produtos);
 })
 
-routerProdutos.get('/produtos/:id', async (req, res) => {
+routerProdutos.get('/:id', async (req, res) => {
     console.log(req.params);
     const { id } = req.params;
 
@@ -17,7 +17,7 @@ routerProdutos.get('/produtos/:id', async (req, res) => {
     res.status(200).json(produto);
 })
 
-routerProdutos.post('/produtos', async (req, res) => {
+routerProdutos.post('/', async (req, res) => {
     const { descricao, valor, marca } = req.body;
     
     const novoProduto = await Produtos.create({
@@ -29,7 +29,7 @@ routerProdutos.post('/produtos', async (req, res) => {
     res.status(200).json(novoProduto);
 })
 
-routerProdutos.put('/produtos/:id', async (req, res) => {
+routerProdutos.put('/:id', async (req, res) => {
     
     const { descricao, valor, marca } = req.body;
     const { id } = req.params;
@@ -51,7 +51,7 @@ routerProdutos.put('/produtos/:id', async (req, res) => {
 })
 
 
-routerProdutos.delete('/produtos/:id', async (req, res) => {
+routerProdutos.delete('/:id', async (req, res) => {
 
     const { id } = req.params;
 
@@ -62,7 +62,6 @@ routerProdutos.delete('/produtos/:id', async (req, res) => {
     })
 
 })
-
 
 
 module.exports = routerProdutos;
