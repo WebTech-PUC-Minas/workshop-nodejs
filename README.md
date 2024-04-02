@@ -275,7 +275,7 @@ async function connectToDb() {
 }
 ```
 
-Com o a coneão bem sucedida criar o model da tabela produtos.
+O arquivo `produto.js` define o modelo de dados para a tabela de produtos usando o Sequelize.
 
 ```js
 const { DataTypes } = require('sequelize');
