@@ -186,11 +186,11 @@ Ao finalizar essa etapa crie um arquivo `.gitignore` e adicione `**/node_modules
 
 ### STEP 2 - Iniciando integração com o banco de dados
 
+Nesta etapa, vamos integrar nossa aplicação Node.js com um banco de dados PostgreSQL utilizando o Sequelize como ORM (Object-Relational Mapping). Aqui está a organização dos diretórios e a descrição das funcionalidades que serão implementadas:
+
 ### Organização de diretórios
 
-A partir do projeto desenvolvido na etapa anterior iremos iniciar nossa API com integração ao banco de dados.
-
-Adicionando arquivo produto.js que serve como model pro sequelize.
+A partir do projeto desenvolvido na etapa anterior, iremos adicionar o arquivo produto.js, que servirá como um modelo para o Sequelize, e criar as rotas CRUD para manipulação dos produtos.
 
 Por exemplo:
 
@@ -209,7 +209,7 @@ Por exemplo:
 └── package-lock.json
 
 ```
-
+### Descrição das Rotas
 
 | Método | Rota | Descrição |
 | :------: | ---- | --------- |
@@ -219,7 +219,7 @@ Por exemplo:
 | PUT | `/produtos/{id}` | Atualizar dados do produtos pelo ID |
 | DELETE | `/produtos/{id}` | Deletar produto cadastrado pelo ID |
 
-Arquivo `server.js`
+O arquivo `server.js` é responsável por iniciar o servidor Express e definir as rotas da nossa API. Além disso, ele também estabelece a conexão com o banco de dados.
 
 ```js
 
@@ -246,11 +246,10 @@ app.listen(PORT, () => {
 })
 ```
 
-Inicalmente vamos criar a conexão com o banco de dados estabelendo os parametros de configuração no arquivo `db.js`.
-
-Arquivo `db.js`:
+O `arquivo db.js` contém a configuração e a conexão com o banco de dados PostgreSQL usando o Sequelize.
 
 ```js
+const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize({
   host: `localhost`,
@@ -263,15 +262,82 @@ const sequelize = new Sequelize({
 
 ```
 
-Apos definir uma instancia do sequelize crie uma autenticação de conexão com o banco de dados:
+```js
+async function connectToDb() {
+
+    try {
+        await sequelize.authenticate();
+        console.log("Conectado ao banco de dados com sucesso!")
+    } catch (error) {
+        console.error("Não foi possivel conectar ao banco de dados!", error);
+    }
+    
+}
+```
+
+Com o a coneão bem sucedida criar o model da tabela produtos.
 
 ```js
-try {
-  sequeliz.autenticate();
-  console.log('Banco de dados conectado com sucesso.')
-} catch (err) {
-  console.error('Não foi possivel conectar ao banco de dados!', err);
-}
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('./db');
+
+const Produtos = sequelize.define('produtos', {
+    id: {
+        type: DataTypes.BIGINT,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    descricao: {
+        type: DataTypes.STRING(50),
+        allowNull: false
+    },
+    valor: {
+        type: DataTypes.DECIMAL(10,10),
+        allowNull: false
+    },
+    marca: {
+        type: DataTypes.STRING(25),
+        allowNull: false
+    }
+}, {
+    timestamps: false
+})
+
+module.exports = Produtos;
+```
+
+### Implementação
+
+As rotas para a manipulação dos produtos são definidas no arquivo router.js, utilizando o Express e o modelo de produto criado com o Sequelize.
+
+
+```js
+const express = require('express');
+const routerProdutos = express.Router();
+const Produtos = require('./produtos');
+
+// Rota para consultar todos os produtos
+routerProdutos.get('/', async (req, res) => {
+
+    const produtos = await Produtos.findAll();
+
+    res.status(200).json(produtos);
+})
+
+module.exports = routerProdutos;
+```
+
+Agora implente as rotas a demais operações do CRUD para a nossa API com os códigos a seguir:
+
+```js
+// Outras rotas para manipulação dos produtos (GET, POST, PUT, DELETE)
+routerProdutos.get('/:id', async (req, res) => { ... })
+
+routerProdutos.post('/', async (req, res) => { ... })
+
+routerProdutos.put('/:id', async (req, res) => { ... })
+
+routerProdutos.delete('/:id', async (req, res) => { ... })
 ```
 
 ### STEP 3 - Segurança usando tokens (JWT)

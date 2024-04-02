@@ -3,10 +3,10 @@ const path = require('path');
 
 const routerProdutos = require('./router');
 
-const { connectionDb } = require('./db');
+const { connectToDb } = require('./db');
 const app = express();
 
-connectionDb();
+connectToDb();
 
 app.use(express.json());
 

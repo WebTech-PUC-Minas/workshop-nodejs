@@ -9,18 +9,18 @@ const sequelize = new Sequelize({
     dialect: 'postgres'
 })
 
-async function connectionDb() {
+async function connectToDb() {
 
     try {
-        sequelize.authenticate();
+        await sequelize.authenticate();
         console.log("Conectado ao banco de dados com sucesso!")
     } catch (error) {
-        console.error("Não foi possivel conectar ao banco de dados!");
+        console.error("Não foi possivel conectar ao banco de dados!", error);
     }
     
 }
 
 module.exports = {
     sequelize,
-    connectionDb,
+    connectToDb,
 }

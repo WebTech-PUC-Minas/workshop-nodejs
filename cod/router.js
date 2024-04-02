@@ -10,7 +10,7 @@ routerProdutos.get('/', async (req, res) => {
 })
 
 routerProdutos.get('/:id', async (req, res) => {
-    console.log(req.params);
+
     const { id } = req.params;
 
     const produto = await Produtos.findByPk(id);
@@ -42,9 +42,7 @@ routerProdutos.put('/:id', async (req, res) => {
         where: { id }
     })
 
-    console.log('id', id);
     const atualizadoProduto = await Produtos.findByPk(id);
-    console.log('produto atualizado', atualizadoProduto);
     
     res.status(200).json(atualizadoProduto);
 
