@@ -1,4 +1,4 @@
-INSERT INTO produto (descricao, valor, marca) VALUES
+INSERT INTO produtos (descricao, valor, marca) VALUES
     ('Camiseta branca', 29.99, 'Marca A'),
     ('Calça jeans', 59.99, 'Marca B'),
     ('Tênis preto', 79.99, 'Marca C'),

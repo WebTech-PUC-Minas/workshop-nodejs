@@ -16,11 +16,3 @@ fs.readFile('pratica.txt', 'utf8', (err, data) => {
     }
 })
 console.log('Assincrino: Finalizando a leitura do arquivo...');
-
-function callback(cb) {
-    cb(2 + 4);
-}
-
-callback((result) => {
-    console.log(result);
-})

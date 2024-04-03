@@ -1,6 +1,7 @@
-CREATE TABLE produtos (
-    id BIGSERIAL PRIMARY KEY,
-    descricao VARCHAR(50) NOT NULL,
-    valor DECIMAL(10, 2) NOT NULL,
-    marca VARCHAR(25)
+CREATE TABLE public.produtos (
+	id bigserial NOT NULL,
+	descricao varchar(50) NOT NULL,
+	valor numeric(10, 2) NOT NULL,
+	marca varchar(25) NULL,
+	CONSTRAINT produtos_pkey PRIMARY KEY (id)
 );

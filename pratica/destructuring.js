@@ -1,4 +1,4 @@
-// treiando destructuring
+// treinando destructuring
 
 const pessoa = {
     nome: 'Maria',

@@ -1,4 +1,4 @@
-fetch('http://localhost:3000/produtos')
+fetch('http://localhost:3000/produto')
     .then(res => res.json())
     .then(obj => obj.map(p => p.descricao))
     .then(produtosDescricao => console.log(produtosDescricao))
