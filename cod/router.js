@@ -30,21 +30,38 @@ routerProdutos.post('/', async (req, res) => {
 })
 
 routerProdutos.put('/:id', async (req, res) => {
-    
+
     const { descricao, valor, marca } = req.body;
     const { id } = req.params;
 
-    await Produtos.update({
-        descricao,
-        valor,
-        marca
-    }, {
-        where: { id }
-    })
+    if (!descricao || !valor || !marca) {
+        res.status(400).json({
+            error: "Campos obrigatórios não preenchidos"
+        })
+    }
 
-    const atualizadoProduto = await Produtos.findByPk(id);
-    
-    res.status(200).json(atualizadoProduto);
+    try {
+
+        const [rowsUpdate] = await Produtos.update({
+            descricao,
+            valor,
+            marca
+        }, {
+            where: { id }
+        })
+
+        if (rowsUpdate == 0) {
+            res.status(400).json({
+                error: "Produto não encontrado"
+            })
+        }
+        
+        const atualizadoProduto = await Produtos.findByPk(id);
+        
+        res.status(200).json(atualizadoProduto);
+    } catch (error) {
+        console.error(error);
+    }
 
 })
 

@@ -340,12 +340,46 @@ routerProdutos.put('/:id', async (req, res) => { ... })
 routerProdutos.delete('/:id', async (req, res) => { ... })
 ```
 
-### STEP 3 - Segurança usando tokens (JWT)
+### STEP 3 - Middlewares
 
+No Node.js e de frameworks como o Express.js, os middlewares são funções que têm acesso aos objetos de solicitação (req), resposta (res) e à próxima função de middleware na pilha de execução. Eles podem executar tarefas como validar dados, manipular cabeçalhos HTTP, fazer log de informações, e muito mais. Os middlewares são empilhados e executados em uma sequência específica, permitindo a modularização e a reutilização de funcionalidades em aplicações web.
 
+### JSON parser
 
+Este middleware é responsável por analisar os corpos das solicitações HTTP com formato JSON. Ele é utilizado para facilitar o processamento de dados JSON enviados para o servidor, tornando-os acessíveis no objeto `req.body` para manipulação posterior no código.
 
+```js
+app.use(express.json())
+```
 
+### Cors
+
+O middleware Cors (Cross-Origin Resource Sharing) é utilizado para habilitar o acesso de recursos entre diferentes origens (domínios). Ele permite que um servidor especifique a quais origens ele está disposto a conceder acesso aos recursos, protegendo assim contra solicitações cross-site scripting (XSS) e outras vulnerabilidades.
+
+```js
+app.use(express.cors())
+```
+
+### Rotas
+
+Este middleware define as rotas da aplicação. Ele especifica o caminho (path) base para o qual as rotas definidas posteriormente serão montadas. Por exemplo, se `/rota` for o caminho base, então todas as rotas definidas em `variableRota` serão acessíveis através de URLs que começam com `/rota`.
+
+```js
+app.use('/rota', variableRota)
+```
+
+### Rotas 404
+
+Este middleware é utilizado para lidar com solicitações para URLs que não correspondem a nenhuma rota definida anteriormente na aplicação. Ele envia um arquivo HTML de página de erro 404 (`404.html`) quando uma solicitação para uma rota desconhecida é recebida.
+
+```js
+const path = require('path');
+app.use((req, res) => {
+    res.sendFile(path.join(__dirname, 'public', '404.html'))
+})
+```
+
+Essas descrições fornecem uma explicação clara sobre o propósito e o funcionamento de cada middleware em seu código Node.js.
 
 ## Contato
 
